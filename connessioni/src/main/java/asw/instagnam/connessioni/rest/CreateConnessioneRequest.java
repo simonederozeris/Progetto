@@ -10,11 +10,6 @@ public class CreateConnessioneRequest {
 	private String follower; 
 	private String followed;
 	
-	public CreateConnessioneRequest(String follower, String followed) {
-		super();
-		this.follower = follower;
-		this.followed = followed;
-	}
 	public String getFollower() {
 		return follower;
 	}

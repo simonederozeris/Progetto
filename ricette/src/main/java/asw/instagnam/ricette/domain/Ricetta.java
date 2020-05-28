@@ -17,10 +17,6 @@ public class Ricetta {
 		this.titolo = r.getTitolo(); 
 	}
 
-	public Ricetta() {
-		super();
-	}
-
 	public Long getId() {
 		return id;
 	}

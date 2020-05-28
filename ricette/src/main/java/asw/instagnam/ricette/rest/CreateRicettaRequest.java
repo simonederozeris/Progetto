@@ -11,12 +11,6 @@ public class CreateRicettaRequest {
 	private String titolo; 
 	private String preparazione;
 	
-	public CreateRicettaRequest(String autore, String titolo, String preparazione) {
-		super();
-		this.autore = autore;
-		this.titolo = titolo;
-		this.preparazione = preparazione;
-	}
 	public String getAutore() {
 		return autore;
 	}
