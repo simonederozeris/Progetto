@@ -1,7 +1,9 @@
 package asw.instagnam.ricetteseguite.domain;
 
-import lombok.*; 
+import javax.persistence.*;
 
+import lombok.*; 
+@Entity
 /* Ricetta (in formato breve). */ 
 @Data @NoArgsConstructor
 public class Ricetta {

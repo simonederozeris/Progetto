@@ -18,7 +18,17 @@ spring:
         queryPassing: true 
     loadbalancer: 
       ribbon.enabled: false 
-
+  kafka:
+  	bootstrap-servers=192.168.56.125:9092
+	consumer:
+		group-id=ricette
+		auto-offset-reset=earliest
+		key-deserializer=org.apache.kafka.common.serialization.StringDeserializer
+		value-deserializer=org.springframework.kafka.support.serializer.JsonDeserializer
+		properties.spring.json.trusted.packages=*
+	producer:
+		key-serializer=org.apache.kafka.common.serialization.StringSerializer
+		value-serializer=org.springframework.kafka.support.serializer.JsonSerializer
 server: 
   port: 8082
 #  port: 8080

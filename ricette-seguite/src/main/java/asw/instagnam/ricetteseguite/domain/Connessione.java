@@ -1,7 +1,9 @@
 package asw.instagnam.ricetteseguite.domain;
 
-import lombok.*; 
+import javax.persistence.*;
 
+import lombok.*; 
+@Entity
 @Data @NoArgsConstructor
 public class Connessione {
 
