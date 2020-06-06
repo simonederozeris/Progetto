@@ -1,16 +1,10 @@
 package asw.instagnam.ricette.domain;
 
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import asw.instagnam.ricette.api.event.DomainEvent;
-import asw.instagnam.ricette.api.event.RicettaCreatedEvent;
-
+import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-
-import java.util.logging.Logger; 
-import java.util.*; 
+import org.springframework.stereotype.Service;
+import asw.instagnam.ricette.api.event.DomainEvent;
+import asw.instagnam.ricette.api.event.RicettaCreatedEvent; 
 
 @Service
 public class RicetteService {
@@ -24,8 +18,9 @@ public class RicetteService {
  	public RicettaCompleta createRicetta(String autore, String titolo, String preparazione) {
 		RicettaCompleta ricetta = new RicettaCompleta(autore, titolo, preparazione); 
 		ricetta = ricetteRepository.save(ricetta);
-	//	DomainEvent event = new RicettaCreatedEvent(ricetta.getId(), ricetta.getAutore(), ricetta.getTitolo());
-	//	domainEventPublisher.publish(event);
+		DomainEvent event = new RicettaCreatedEvent(ricetta.getId(), ricetta.getAutore(), ricetta.getTitolo());
+		domainEventPublisher.publish(event);
+		System.out.println("creato evento");
 		return ricetta;
 	}
 

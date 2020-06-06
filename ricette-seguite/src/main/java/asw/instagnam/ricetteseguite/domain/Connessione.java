@@ -7,6 +7,7 @@ import lombok.*;
 @Data @NoArgsConstructor
 public class Connessione {
 
+	@Id 
 	private Long id; 
 	private String follower; 
 	private String followed;

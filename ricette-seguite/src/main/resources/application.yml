@@ -17,8 +17,21 @@ spring:
         # consul deve restituire solo servizi che passano l'health check (default=false) 
         queryPassing: true 
     loadbalancer: 
-      ribbon.enabled: false 
-
+      ribbon.enabled: false
+  kafka:
+     bootstrap-servers: localhost:9092
+     consumer:
+        group-id: ricette,connessioni
+        auto-offset-reset: earliest
+        key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer   
+  jpa:
+     hibernate:
+        ddl-auto: create
+  datasource:
+     url: jdbc:mysql://localhost:3308/db
+     username: user
+     password: password
 server: 
   port: 8083
 #  port: 8080

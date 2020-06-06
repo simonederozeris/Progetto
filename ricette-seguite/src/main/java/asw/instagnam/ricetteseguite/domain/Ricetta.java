@@ -8,6 +8,7 @@ import lombok.*;
 @Data @NoArgsConstructor
 public class Ricetta {
 
+	@Id 
 	private Long id; 
 	private String autore; 
 	private String titolo;
