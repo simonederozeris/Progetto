@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
-import asw.instagnam.ricetteseguite.api.event.RicettaCreatedEvent;
-import asw.instagnam.ricetteseguite.api.event.RicettaServiceEventChannel;
+import asw.instagnam.ricette.api.event.RicettaCreatedEvent;
+import asw.instagnam.ricette.api.event.RicettaServiceEventChannel;
 
 @Component
 public class RicettaDomainEventConsumer {

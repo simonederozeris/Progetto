@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
-import asw.instagnam.ricetteseguite.api.event.ConnessioneCreatedEvent;
-import asw.instagnam.ricetteseguite.api.event.ConnessioneServiceEventChannel;
+import asw.instagnam.connessioni.api.event.ConnessioneCreatedEvent;
+import asw.instagnam.connessioni.api.event.ConnessioneServiceEventChannel;
 
 @Component
 public class ConnessioneDomainEventConsumer {
