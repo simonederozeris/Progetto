@@ -25,6 +25,8 @@ public class RicetteSeguiteController {
 	private RicetteSeguiteService ricetteSeguiteService;
 
 	/* Trova le ricette (in formato breve) degli utenti seguiti da utente. */ 
+	/*
+	// BISOGNA CAMBIARE LA LOGICA, SI DEVE USARE IL DB DI RICETTE SEGUITE
 	@GetMapping("/ricetteseguite/{utente}")
 	public Collection<Ricetta> getRicetteSeguite(@PathVariable String utente) {
 		logger.info("REST CALL: getRicetteSeguite " + utente); 
@@ -32,5 +34,5 @@ public class RicetteSeguiteController {
 		logger.info("getRicetteSeguite(): " + ricette);
 		return ricette; 
 	}
-	
+	*/
 }
