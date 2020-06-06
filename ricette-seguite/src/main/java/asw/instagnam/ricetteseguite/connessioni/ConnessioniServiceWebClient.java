@@ -1,3 +1,5 @@
+/*
+ // DA MODIFICARE LA LOGICA, BISOGNA USARE IL DB DI RICETTE SEGUITE
 package asw.instagnam.ricetteseguite.connessioni;
 
 import asw.instagnam.ricetteseguite.domain.*; 
@@ -43,3 +45,4 @@ public class ConnessioniServiceWebClient implements ConnessioniService {
 	}	
 
 }
+*/

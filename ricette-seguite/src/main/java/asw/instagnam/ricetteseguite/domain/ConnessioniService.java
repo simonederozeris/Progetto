@@ -1,9 +1,15 @@
 package asw.instagnam.ricetteseguite.domain;
 
-import java.util.*; 
+import org.springframework.beans.factory.annotation.Autowired; 
 
-public interface ConnessioniService {
-
-	public Collection<Connessione> getConnessioniByFollower(String follower); 
+public class ConnessioniService {
+	@Autowired
+	private ConnessioniRepository connessioniRepository;
+	//public Collection<Connessione> getConnessioniByFollower(String follower); 
 	
+	public Connessione createConnessione(Long id, String follower, String followed) {
+		Connessione connessione = new Connessione(id, follower, followed); 
+		connessione = connessioniRepository.save(connessione);
+		return connessione;
+	}
 }

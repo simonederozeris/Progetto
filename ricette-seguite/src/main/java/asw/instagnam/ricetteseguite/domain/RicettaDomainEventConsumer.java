@@ -9,7 +9,7 @@ import asw.instagnam.ricetteseguite.api.event.RicettaCreatedEvent;
 import asw.instagnam.ricetteseguite.api.event.RicettaServiceEventChannel;
 
 @Component
-public class RicetteSeguiteDomainEventConsumer {
+public class RicettaDomainEventConsumer {
 	@Autowired 
 	private RicetteService ricetteService; 
 	
