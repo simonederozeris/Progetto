@@ -27,6 +27,7 @@ dependencies {
     implementation ("io.springfox:springfox-swagger-ui:${swaggerVersion}"){
         exclude group: "org.springframework"
     }
+    implementation("org.springframework.kafka:spring-kafka")
 
 }
 

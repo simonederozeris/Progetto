@@ -11,6 +11,13 @@ public class Ricetta {
 	private Long id; 
 	private String autore; 
 	private String titolo;
+	
+	public Ricetta(Long id, String autore, String titolo) {
+		super();
+		this.id = id;
+		this.autore = autore;
+		this.titolo = titolo;
+	}
 	public Long getId() {
 		return id;
 	}
