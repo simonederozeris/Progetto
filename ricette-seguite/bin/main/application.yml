@@ -5,7 +5,7 @@ spring:
     name: ricette-seguite
   cloud:
     consul:
-      host: localhost
+      host: consul
       port: 8500
       discovery: 
         instanceId: ${spring.application.name}-${spring.cloud.client.hostname}-${random.value}
@@ -19,7 +19,7 @@ spring:
     loadbalancer: 
       ribbon.enabled: false
   kafka:
-     bootstrap-servers: localhost:9092
+     bootstrap-servers: kafka:29092
      consumer:
         group-id: ricette,connessioni
         auto-offset-reset: earliest
@@ -34,7 +34,7 @@ spring:
      hibernate:
         ddl-auto: create
   datasource:
-     url: jdbc:mysql://localhost:3308/db
+     url: jdbc:mysql://ricetteseguitedb:3306/db
      username: user
      password: password
 server: 

@@ -5,7 +5,7 @@ spring:
     name: connessioni
   cloud:
     consul:
-      host: localhost
+      host: consul
       port: 8500
       discovery: 
         instanceId: ${spring.application.name}-${spring.cloud.client.hostname}-${random.value}
@@ -19,7 +19,7 @@ spring:
     loadbalancer: 
       ribbon.enabled: false 
   kafka:
-     bootstrap-servers: localhost:9092
+     bootstrap-servers: kafka:29092
      producer:
         key-serializer: org.apache.kafka.common.serialization.StringSerializer  
         value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
@@ -32,7 +32,7 @@ spring:
      hibernate:
         ddl-auto: create
   datasource:
-     url: jdbc:mysql://localhost:3307/db
+     url: jdbc:mysql://connessionidb:3306/db
      username: user
      password: password
 server: 
