@@ -25,14 +25,14 @@ public class RicetteSeguiteController {
 	private RicetteSeguiteService ricetteSeguiteService;
 
 	/* Trova le ricette (in formato breve) degli utenti seguiti da utente. */ 
-	/*
-	// BISOGNA CAMBIARE LA LOGICA, SI DEVE USARE IL DB DI RICETTE SEGUITE
-	@GetMapping("/ricetteseguite/{utente}")
-	public Collection<Ricetta> getRicetteSeguite(@PathVariable String utente) {
-		logger.info("REST CALL: getRicetteSeguite " + utente); 
-		Collection<Ricetta> ricette = ricetteSeguiteService.getRicetteSeguite(utente); 
-		logger.info("getRicetteSeguite(): " + ricette);
-		return ricette; 
+	
+	//TODO: BISOGNA CAMBIARE LA LOGICA, SI DEVE USARE IL DB DI RICETTE SEGUITE
+	@GetMapping("/ricetteseguite")
+	public String getRicetteSeguite() {
+		logger.info("REST CALL: getRicetteSeguite "); 
+		//Collection<Ricetta> ricette = ricetteSeguiteService.getRicetteSeguite(utente); 
+		//logger.info("getRicetteSeguite(): " + ricette);
+		//return ricette; 
+		return "test ricette seguite";
 	}
-	*/
 }

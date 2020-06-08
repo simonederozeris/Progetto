@@ -15,7 +15,7 @@ public class RicetteSeguiteService {
 	private RicetteService ricetteService;
 
 	/* Trova le ricette (in formato breve) degli utenti seguiti da utente. */ 
-	//DA CAMBIARE LA LOGICA: BISOGNA PRENDERE LE RICETTE DAL DB DI RICETTE SEGUITE
+	//TODO: DA CAMBIARE LA LOGICA: BISOGNA PRENDERE LE RICETTE DAL DB DI RICETTE SEGUITE
 	/*
 	public Collection<Ricetta> getRicetteSeguite(String utente) {
 		Collection<Ricetta> ricette = new ArrayList<>(); 

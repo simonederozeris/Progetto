@@ -88,7 +88,7 @@ services:
     logging:
       driver: none
   ricette:
-    build: ./Instagnam/ricette
+    build: ./ricette
     image: ricette
     ports:
     - "8082:8082"
@@ -97,7 +97,7 @@ services:
       - "kafka"
       - "ricettedb"
   connessioni:
-    build: ./Instagnam/connessioni
+    build: ./connessioni
     image: connessioni
     ports:
     - "8081:8081"
@@ -106,7 +106,7 @@ services:
       - "kafka"
       - "connessionidb"
   ricette-seguite:
-    build: ./Instagnam/ricette-seguite
+    build: ./ricette-seguite
     image: ricette-seguite
     ports:
     - "8083:8083"
@@ -115,7 +115,7 @@ services:
       - "kafka"
       - "ricetteseguitedb"
   api-gateway:
-    build: ./Instagnam/api-gateway
+    build: ./api-gateway
     image: api-gateway
     ports:
     - "8084:8084"
