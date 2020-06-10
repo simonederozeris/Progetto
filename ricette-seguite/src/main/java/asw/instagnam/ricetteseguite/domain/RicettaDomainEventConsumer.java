@@ -15,20 +15,24 @@ import asw.instagnam.ricette.api.event.RicettaServiceEventChannel;
 public class RicettaDomainEventConsumer {
 	@Autowired 
 	private RicetteService ricetteService; 
+	@Autowired
 	private RicetteSeguiteService ricetteSeguiteService; 
+	@Autowired
 	private ConnessioniService connessioniService; 
+	
 	private final Logger logger = Logger.getLogger(RicettaDomainEventConsumer.class.toString()); 
+	
 	@KafkaListener(topics = RicettaServiceEventChannel.channel)
 	public void listen(ConsumerRecord<String, RicettaCreatedEvent> record) throws Exception {
 		RicettaCreatedEvent event = record.value();
-		logger.info("' stata creata una nuova ricetta: " + event.toString());
+		logger.info("E' stata creata una nuova ricetta: " + event.toString());
 		Ricetta ricetta=ricetteService.createRicetta(event.getId(), event.getAutore(), event.getTitolo());
 
 		Collection<Connessione> listFollowersByAutore=connessioniService.getConnessioniByFollowed(ricetta.getAutore());
 		if(listFollowersByAutore!=null) {
 			for(Connessione connessione: listFollowersByAutore) {
 				RicettaSeguita ricettaSeguita=ricetteSeguiteService.createRicettaSeguita(connessione.getFollower(), ricetta.getId(), ricetta.getAutore(), ricetta.getTitolo());
-				logger.info("Da una nuova ricetta è' stata creata una nuova ricetta seguita: " + ricettaSeguita.toString());
+				logger.info("Da una nuova ricetta e' stata creata una nuova ricetta seguita: " + ricettaSeguita.toString());
 			}
 		}
 	}

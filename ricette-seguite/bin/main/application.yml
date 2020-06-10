@@ -22,7 +22,7 @@ spring:
      bootstrap-servers: kafka:29092
      consumer:
         group-id: ricette,connessioni
-        auto-offset-reset: earliest
+        auto-offset-reset: latest
         key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
         value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
         properties:
