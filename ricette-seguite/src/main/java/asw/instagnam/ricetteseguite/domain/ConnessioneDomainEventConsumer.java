@@ -1,5 +1,8 @@
 package asw.instagnam.ricetteseguite.domain;
 
+import java.util.Collection;
+import java.util.logging.Logger;
+
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -12,11 +15,19 @@ import asw.instagnam.connessioni.api.event.ConnessioneServiceEventChannel;
 public class ConnessioneDomainEventConsumer {
 	@Autowired 
 	private ConnessioniService connessioniService; 
-	
+	private RicetteSeguiteService ricetteSeguiteService; 
+	private RicetteService ricetteService; 
+	private final Logger logger = Logger.getLogger(ConnessioneDomainEventConsumer.class.toString()); 
+
 	@KafkaListener(topics = ConnessioneServiceEventChannel.channel)
 	public void listen(ConsumerRecord<String, ConnessioneCreatedEvent> record) throws Exception {
 		ConnessioneCreatedEvent event = record.value();
-		System.out.println("E' stata creata una nuova connessione: " + event.toString());
-		connessioniService.createConnessione(event.getId(), event.getFollower(), event.getFollowed());
+		logger.info("E' stata creata una nuova connessione: " + event.toString());
+		Connessione connessione=connessioniService.createConnessione(event.getId(), event.getFollower(), event.getFollowed());
+		Collection<Ricetta> listRicetteByAutore=ricetteService.getRicetteByAutore(connessione.getFollowed());
+		for(Ricetta ricetta: listRicetteByAutore) {
+			RicettaSeguita ricettaSeguita=ricetteSeguiteService.createRicettaSeguita(connessione.getFollower(), ricetta.getId(), ricetta.getAutore(), ricetta.getTitolo());
+			logger.info("Da una nuova connessione è' stata creata una nuova ricetta seguita: " + ricettaSeguita.toString());
+		}
 	}
 }

@@ -8,24 +8,19 @@ import java.util.*;
 @Service 
 public class RicetteSeguiteService {
 
-	@Autowired 
-	private ConnessioniService connessioniService;
+	@Autowired
+	private RicetteSeguiteRepository ricetteSeguiteRepository;
 
-	@Autowired 
-	private RicetteService ricetteService;
-
-	/* Trova le ricette (in formato breve) degli utenti seguiti da utente. */ 
-	//TODO: DA CAMBIARE LA LOGICA: BISOGNA PRENDERE LE RICETTE DAL DB DI RICETTE SEGUITE
-	/*
-	public Collection<Ricetta> getRicetteSeguite(String utente) {
-		Collection<Ricetta> ricette = new ArrayList<>(); 
-		Collection<Connessione> connessioni = connessioniService.getConnessioniByFollower(utente); 
-		for (Connessione connessione : connessioni) {
-			String followed = connessione.getFollowed();
-			Collection<Ricetta> ricetteByFollowed = ricetteService.getRicetteByAutore(followed);
-			ricette.addAll(ricetteByFollowed);
-		}
-		return ricette; 
+	public RicettaSeguita createRicettaSeguita(String utenteFollower, Long idRicetta, String autoreRicetta, String titoloRicetta) {
+		RicettaSeguita ricettaSeguita = new RicettaSeguita(utenteFollower, idRicetta, autoreRicetta,titoloRicetta); 
+		ricettaSeguita = ricetteSeguiteRepository.save(ricettaSeguita);
+		
+		return ricettaSeguita;
 	}
-	*/
+	
+	/* Trova le ricette (in formato breve) degli utenti seguiti da utente. */ 
+	public Collection<RicettaSeguita> getRicetteSeguite(String utente) {
+		return ricetteSeguiteRepository.findAllByUtenteFollower(utente);
+	}
+	
 }

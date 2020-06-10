@@ -1,20 +1,15 @@
 package asw.instagnam.ricetteseguite.rest;
 
-import asw.instagnam.ricetteseguite.domain.*; 
+import java.util.Collection;
+import java.util.logging.Logger;
 
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PathVariable; 
-import org.springframework.web.bind.annotation.RequestMethod; 
-import org.springframework.web.bind.annotation.RequestParam; 
-import org.springframework.web.bind.annotation.RequestBody; 
-import org.springframework.web.server.ResponseStatusException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.logging.Logger; 
-import java.util.*; 
+import asw.instagnam.ricetteseguite.domain.RicettaSeguita;
+import asw.instagnam.ricetteseguite.domain.RicetteSeguiteService; 
 
 @RestController
 public class RicetteSeguiteController {
@@ -23,16 +18,13 @@ public class RicetteSeguiteController {
 
 	@Autowired 
 	private RicetteSeguiteService ricetteSeguiteService;
+	
 
 	/* Trova le ricette (in formato breve) degli utenti seguiti da utente. */ 
-	
-	//TODO: BISOGNA CAMBIARE LA LOGICA, SI DEVE USARE IL DB DI RICETTE SEGUITE
-	@GetMapping("/ricetteseguite")
-	public String getRicetteSeguite() {
-		logger.info("REST CALL: getRicetteSeguite "); 
-		//Collection<Ricetta> ricette = ricetteSeguiteService.getRicetteSeguite(utente); 
-		//logger.info("getRicetteSeguite(): " + ricette);
-		//return ricette; 
-		return "test ricette seguite";
+	@GetMapping("/ricetteseguite/{utente}")
+	public Collection<RicettaSeguita> getRicetteSeguite(@PathVariable String utente) {
+		logger.info("REST CALL: getRicetteSeguite by "+utente); 
+		Collection<RicettaSeguita> ricetteSeguite = ricetteSeguiteService.getRicetteSeguite(utente); 
+		return ricetteSeguite;
 	}
 }

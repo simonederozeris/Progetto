@@ -1,5 +1,7 @@
 package asw.instagnam.ricetteseguite.domain;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service; 
 
@@ -8,6 +10,10 @@ public class ConnessioniService {
 	@Autowired
 	private ConnessioniRepository connessioniRepository;
 	//public Collection<Connessione> getConnessioniByFollower(String follower); 
+	
+	public Collection<Connessione> getConnessioniByFollowed(String followed){
+		return connessioniRepository.findAllByFollowed(followed);
+	}
 	
 	public Connessione createConnessione(Long id, String follower, String followed) {
 		Connessione connessione = new Connessione(id, follower, followed); 

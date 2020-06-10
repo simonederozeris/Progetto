@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data @NoArgsConstructor
-public class Ricetteseguite {
+public class RicettaSeguita {
 	@Id 
 	@GeneratedValue
 	private Long id;
@@ -16,7 +16,7 @@ public class Ricetteseguite {
 	private String autoreRicetta;
 	private String titoloRicetta;
 	
-	public Ricetteseguite(String utenteFollower, Long idRicetta, String autoreRicetta, String titoloRicetta) {
+	public RicettaSeguita(String utenteFollower, Long idRicetta, String autoreRicetta, String titoloRicetta) {
 		super();
 		this.utenteFollower = utenteFollower;
 		this.idRicetta = idRicetta;
@@ -62,6 +62,12 @@ public class Ricetteseguite {
 
 	public void setTitoloRicetta(String titoloRicetta) {
 		this.titoloRicetta = titoloRicetta;
+	}
+
+	@Override
+	public String toString() {
+		return "RicettaSeguita [id=" + id + ", utenteFollower=" + utenteFollower + ", idRicetta=" + idRicetta
+				+ ", autoreRicetta=" + autoreRicetta + ", titoloRicetta=" + titoloRicetta + "]";
 	}
 	
 	
