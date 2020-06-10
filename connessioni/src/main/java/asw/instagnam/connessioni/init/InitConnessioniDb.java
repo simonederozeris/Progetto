@@ -14,12 +14,12 @@ public class InitConnessioniDb implements CommandLineRunner {
 	private ConnessioniService connessioniService; 
 
 	public void run(String[] args) {		
-		connessioniService.createConnessione( "Cristiano", "Gennaro" );	
-		connessioniService.createConnessione( "Gennaro", "Cristiano" );	
-		connessioniService.createConnessione( "Paolo", "Cristiano" );	
-		connessioniService.createConnessione( "Paolo", "Gennaro" );	
-		connessioniService.createConnessione( "Anna", "Antonino" );	
-		connessioniService.createConnessione( "Anna", "Benedetta" );	
+		connessioniService.createConnessioneInit( "Cristiano", "Gennaro" );	
+		connessioniService.createConnessioneInit( "Gennaro", "Cristiano" );	
+		connessioniService.createConnessioneInit( "Paolo", "Cristiano" );	
+		connessioniService.createConnessioneInit( "Paolo", "Gennaro" );	
+		connessioniService.createConnessioneInit( "Anna", "Antonino" );	
+		connessioniService.createConnessioneInit( "Anna", "Benedetta" );	
 	}
 	
 }

@@ -14,11 +14,11 @@ public class InitRicetteDb implements CommandLineRunner {
 	private RicetteService ricetteService; 
 
 	public void run(String[] args) {		
-		ricetteService.createRicetta( "Cristiano", "Panino al prosciutto", "Metti il prosciutto nel panino" );	
-		ricetteService.createRicetta( "Cristiano", "Pizza e mortazza", "Metti la mortadella nella pizza" );	
-		ricetteService.createRicetta( "Gennaro", "Tonno e fagioli", "Unisci i fagioli con il tonno" );	
-		ricetteService.createRicetta( "Antonino", "Pizza margherita", "... e alla fine inforna" );	
-		ricetteService.createRicetta( "Benedetta", "Tonno e fagioli", "Unisci il tonno con i fagioli" );	
+		ricetteService.createRicettaInit( "Cristiano", "Panino al prosciutto", "Metti il prosciutto nel panino" );	
+		ricetteService.createRicettaInit( "Cristiano", "Pizza e mortazza", "Metti la mortadella nella pizza" );	
+		ricetteService.createRicettaInit( "Gennaro", "Tonno e fagioli", "Unisci i fagioli con il tonno" );	
+		ricetteService.createRicettaInit( "Antonino", "Pizza margherita", "... e alla fine inforna" );	
+		ricetteService.createRicettaInit( "Benedetta", "Tonno e fagioli", "Unisci il tonno con i fagioli" );	
 	}
 	
 }
