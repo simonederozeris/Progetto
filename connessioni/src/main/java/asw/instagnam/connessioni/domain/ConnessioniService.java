@@ -22,6 +22,12 @@ public class ConnessioniService {
 		domainEventPublisher.publish(event);
 		return connessione;
 	}
+ 	
+ 	public Connessione createConnessioneInit(String follower, String followed) {
+		Connessione connessione = new Connessione(follower, followed); 
+		connessione = connessioniRepository.save(connessione);
+		return connessione;
+	}
 
  	public Connessione getConnessione(Long id) {
 		Connessione connessione = connessioniRepository.findById(id).orElse(null);

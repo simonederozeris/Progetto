@@ -23,11 +23,13 @@ public class RicettaDomainEventConsumer {
 		RicettaCreatedEvent event = record.value();
 		logger.info("' stata creata una nuova ricetta: " + event.toString());
 		Ricetta ricetta=ricetteService.createRicetta(event.getId(), event.getAutore(), event.getTitolo());
-		
+
 		Collection<Connessione> listFollowersByAutore=connessioniService.getConnessioniByFollowed(ricetta.getAutore());
-		for(Connessione connessione: listFollowersByAutore) {
-			RicettaSeguita ricettaSeguita=ricetteSeguiteService.createRicettaSeguita(connessione.getFollower(), ricetta.getId(), ricetta.getAutore(), ricetta.getTitolo());
-			logger.info("Da una nuova ricetta è' stata creata una nuova ricetta seguita: " + ricettaSeguita.toString());
+		if(listFollowersByAutore!=null) {
+			for(Connessione connessione: listFollowersByAutore) {
+				RicettaSeguita ricettaSeguita=ricetteSeguiteService.createRicettaSeguita(connessione.getFollower(), ricetta.getId(), ricetta.getAutore(), ricetta.getTitolo());
+				logger.info("Da una nuova ricetta è' stata creata una nuova ricetta seguita: " + ricettaSeguita.toString());
+			}
 		}
 	}
 }

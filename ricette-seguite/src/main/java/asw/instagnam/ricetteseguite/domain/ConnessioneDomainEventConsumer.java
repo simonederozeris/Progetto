@@ -25,9 +25,11 @@ public class ConnessioneDomainEventConsumer {
 		logger.info("E' stata creata una nuova connessione: " + event.toString());
 		Connessione connessione=connessioniService.createConnessione(event.getId(), event.getFollower(), event.getFollowed());
 		Collection<Ricetta> listRicetteByAutore=ricetteService.getRicetteByAutore(connessione.getFollowed());
-		for(Ricetta ricetta: listRicetteByAutore) {
-			RicettaSeguita ricettaSeguita=ricetteSeguiteService.createRicettaSeguita(connessione.getFollower(), ricetta.getId(), ricetta.getAutore(), ricetta.getTitolo());
-			logger.info("Da una nuova connessione è' stata creata una nuova ricetta seguita: " + ricettaSeguita.toString());
+		if(listRicetteByAutore!=null) {
+			for(Ricetta ricetta: listRicetteByAutore) {
+				RicettaSeguita ricettaSeguita=ricetteSeguiteService.createRicettaSeguita(connessione.getFollower(), ricetta.getId(), ricetta.getAutore(), ricetta.getTitolo());
+				logger.info("Da una nuova connessione è' stata creata una nuova ricetta seguita: " + ricettaSeguita.toString());
+			}
 		}
 	}
 }
