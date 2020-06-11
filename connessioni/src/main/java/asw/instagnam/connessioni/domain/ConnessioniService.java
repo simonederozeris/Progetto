@@ -14,10 +14,13 @@ public class ConnessioniService {
 	
 	@Autowired
 	private ConnessioneDomainEventPublisher domainEventPublisher;
+	
+	public boolean checkIfEmpty() {
+		return connessioniRepository.count() == 0 ? true : false;
+	}
 
  	public Connessione createConnessione(String follower, String followed) {
-		Connessione connessione = new Connessione(follower, followed); 
-		connessione = connessioniRepository.save(connessione);
+		Connessione connessione = createConnessioneInit(follower, followed); 
 		DomainEvent event = new ConnessioneCreatedEvent(connessione.getId(), connessione.getFollowed(), connessione.getFollower());
 		domainEventPublisher.publish(event);
 		return connessione;

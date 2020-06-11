@@ -10,6 +10,10 @@ public class RicetteSeguiteService {
 
 	@Autowired
 	private RicetteSeguiteRepository ricetteSeguiteRepository;
+	
+	public boolean checkIfEmpty() {
+		return ricetteSeguiteRepository.count() == 0 ? true : false;
+	}
 
 	public RicettaSeguita createRicettaSeguita(String utenteFollower, Long idRicetta, String autoreRicetta, String titoloRicetta) {
 		RicettaSeguita ricettaSeguita = new RicettaSeguita(utenteFollower, idRicetta, autoreRicetta,titoloRicetta); 

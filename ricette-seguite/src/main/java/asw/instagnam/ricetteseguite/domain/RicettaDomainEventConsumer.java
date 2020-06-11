@@ -26,6 +26,7 @@ public class RicettaDomainEventConsumer {
 	public void listen(ConsumerRecord<String, RicettaCreatedEvent> record) throws Exception {
 		RicettaCreatedEvent event = record.value();
 		logger.info("E' stata creata una nuova ricetta: " + event.toString());
+		
 		Ricetta ricetta=ricetteService.createRicetta(event.getId(), event.getAutore(), event.getTitolo());
 
 		Collection<Connessione> listFollowersByAutore=connessioniService.getConnessioniByFollowed(ricetta.getAutore());

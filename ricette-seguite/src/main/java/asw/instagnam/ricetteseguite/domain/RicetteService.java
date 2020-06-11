@@ -9,6 +9,11 @@ import org.springframework.stereotype.Service;
 public class RicetteService {
 	@Autowired
 	private RicetteRepository ricetteRepository;
+	
+	public boolean checkIfEmpty() {
+		return ricetteRepository.count() == 0 ? true : false;
+	}
+	
 	public Collection<Ricetta> getRicetteByAutore(String autore){
 		return ricetteRepository.findAllByAutore(autore);
 	}

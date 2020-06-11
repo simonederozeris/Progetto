@@ -11,6 +11,10 @@ public class ConnessioniService {
 	private ConnessioniRepository connessioniRepository;
 	//public Collection<Connessione> getConnessioniByFollower(String follower); 
 	
+	public boolean checkIfEmpty() {
+		return connessioniRepository.count() == 0 ? true : false;
+	}
+	
 	public Collection<Connessione> getConnessioniByFollowed(String followed){
 		return connessioniRepository.findAllByFollowed(followed);
 	}

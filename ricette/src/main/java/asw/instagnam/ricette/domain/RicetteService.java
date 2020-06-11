@@ -14,10 +14,13 @@ public class RicetteService {
 	
 	@Autowired
 	private RicettaDomainEventPublisher domainEventPublisher;
+	
+	public boolean checkIfEmpty() {
+		return ricetteRepository.count() == 0 ? true : false;
+	}
 
  	public RicettaCompleta createRicetta(String autore, String titolo, String preparazione) {
-		RicettaCompleta ricetta = new RicettaCompleta(autore, titolo, preparazione); 
-		ricetta = ricetteRepository.save(ricetta);
+		RicettaCompleta ricetta = createRicettaInit(autore, titolo, preparazione); 
 		DomainEvent event = new RicettaCreatedEvent(ricetta.getId(), ricetta.getAutore(), ricetta.getTitolo());
 		domainEventPublisher.publish(event);
 		return ricetta;

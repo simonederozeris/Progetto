@@ -28,7 +28,9 @@ public class ConnessioneDomainEventConsumer {
 	public void listen(ConsumerRecord<String, ConnessioneCreatedEvent> record) throws Exception {
 		ConnessioneCreatedEvent event = record.value();
 		logger.info("E' stata creata una nuova connessione: " + event.toString());
+		
 		Connessione connessione=connessioniService.createConnessione(event.getId(), event.getFollowed(), event.getFollower());
+		
 		Collection<Ricetta> listRicetteByAutore=ricetteService.getRicetteByAutore(connessione.getFollowed());
 		if(listRicetteByAutore!=null) {
 			for(Ricetta ricetta: listRicetteByAutore) {

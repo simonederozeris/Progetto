@@ -27,21 +27,21 @@ spring:
       - id: ricette_seguite_route
         uri: lb://ricette-seguite
         predicates:
-        - Path=/ricette-seguite
+        - Path=/ricette-seguite/**
         filters:
-        - SetPath=/
+        - StripPrefix=1
       - id: ricette_route
         uri: lb://ricette
         predicates:
-        - Path=/ricette
+        - Path=/ricette/**
         filters:
-        - SetPath=/
+        - StripPrefix=1
       - id: connessioni_route
         uri: lb://connessioni
         predicates:
-        - Path=/connessioni
+        - Path=/connessioni/**
         filters:
-        - SetPath=/
+        - StripPrefix=1
     
 server: 
 #  port: ${PORT:${SERVER_PORT:0}}

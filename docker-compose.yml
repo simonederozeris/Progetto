@@ -90,8 +90,8 @@ services:
   ricette:
     build: ./ricette
     image: ricette
-    ports:
-    - "8082:8082"
+    expose:
+    - "8082"
     depends_on:
       - "consul"
       - "kafka"
@@ -99,8 +99,8 @@ services:
   connessioni:
     build: ./connessioni
     image: connessioni
-    ports:
-    - "8081:8081"
+    expose:
+    - "8081"
     depends_on:
       - "consul"
       - "kafka"
@@ -108,12 +108,22 @@ services:
   ricette-seguite:
     build: ./ricette-seguite
     image: ricette-seguite
-    ports:
-    - "8083:8083"
+    expose:
+    - "8083"
     depends_on:
       - "consul"
       - "kafka"
       - "ricetteseguitedb"
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - ricette
+      - connessioni
+      - ricette-seguite
+    ports:
+      - "4000:4000"
   api-gateway:
     build: ./api-gateway
     image: api-gateway
