@@ -19,7 +19,7 @@ spring:
     loadbalancer: 
       ribbon.enabled: false
   kafka:
-     bootstrap-servers: kafka:29092
+     bootstrap-servers: kafka:9092
      consumer:
         group-id: ricette,connessioni
         auto-offset-reset: latest

@@ -1,26 +1,25 @@
 version: '3.3'
 services:
   zookeeper:
-      image: confluentinc/cp-zookeeper:latest
-      environment:
-        ZOOKEEPER_CLIENT_PORT: 2181
-        ZOOKEEPER_TICK_TIME: 2000
-        KAFKA_CFG_ZOOKEEPER_CONNECTION_TIMEOUT_MS: 10000000
-
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+    hostname: zookeeper
   kafka:
-      image: confluentinc/cp-kafka:latest
-      depends_on:
-      - zookeeper
-      ports:
-      - 9092:9092
-      environment:
-        KAFKA_BROKER_ID: 1
-        KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-        KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
-        KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
-        KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
-        KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-        KAFKA_CREATE_TOPICS: "ricette:1:1,connessioni:1:1"
+    image: wurstmeister/kafka
+    command: [start-kafka.sh]
+    ports:
+      - "9092:9092"
+    hostname: kafka
+    environment:
+      KAFKA_CREATE_TOPICS: "ricette:1:1,connessioni:1:1"
+      KAFKA_ADVERTISED_HOST_NAME: kafka # docker-machine ip
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_PORT: 9092
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - "zookeeper"
   ricettedb:
     image: mysql:5.7
     restart: always
@@ -114,16 +113,32 @@ services:
       - "consul"
       - "kafka"
       - "ricetteseguitedb"
-  nginx:
+      - "connessioni"
+      - "ricette"
+  nginx_connessioni:
     image: nginx:latest
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx_connessioni.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      - ricette
       - connessioni
-      - ricette-seguite
     ports:
       - "4000:4000"
+  nginx_ricette:
+    image: nginx:latest
+    volumes:
+      - ./nginx_ricette.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - ricette
+    ports:
+      - "4001:4001"
+  nginx_ricette_seguite:
+    image: nginx:latest
+    volumes:
+      - ./nginx_ricette_seguite.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - ricette-seguite
+    ports:
+      - "4002:4002"
   api-gateway:
     build: ./api-gateway
     image: api-gateway
